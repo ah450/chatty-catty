@@ -22,5 +22,10 @@ module ChattyCatty
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.jwt_key = ENV["JWT_KEY"] || "super_secret_string"
+    config.assets.enabled = false
+    config.generators do |g|
+      g.assets false
+    end
   end
 end
