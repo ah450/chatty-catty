@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     return user
   end
 
+  def as_json(options={})
+    super(except: [:password_digest])
+  end
+
   private
 
   def self.hmac_key
