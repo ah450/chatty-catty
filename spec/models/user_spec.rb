@@ -35,4 +35,15 @@ RSpec.describe User, type: :model do
       expect(second).to_not be_valid
     end
   end
+
+  describe 'Token generation' do
+    let(:user) {FactoryGirl.create(:user)}
+    it 'should be able to create a token' do
+      expect(user.token).to be_a_kind_of String
+    end
+    it 'should be able to retrive a user by its token' do
+      token = user.token
+      expect(User.find_by_token(token)).to eql user
+    end
+  end
 end
