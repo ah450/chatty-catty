@@ -28,5 +28,16 @@ module ChattyCatty
     config.generators do |g|
       g.assets false
     end
+    config.configuration = {
+        error_messages: {
+            expired_token: "Token has expired",
+            token_verification: "Unable to verify Token",
+            forbidden: "Forbidden",
+            authentication_error: "Authentication Error",
+            argument_error: "Argument error",
+            record_not_found: "Record not found",
+        },
+        default_token_exp: 24 * 60 * 60
+    }
   end
 end
