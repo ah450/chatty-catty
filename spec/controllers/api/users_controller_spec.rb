@@ -65,6 +65,22 @@ RSpec.describe Api::UsersController, type: :controller do
       user.reload
       expect(user.password_digest).to eql old_digest
     end
+    it 'should not allow a user to change email' do
+      request.headers['Authorization'] = "Bearer #{user.token}"
+      old_email = user.email
+      put :update, id: user.id, user: {email: "new email!"}
+      expect(response).to be_unprocessable
+      user.reload
+      expect(user.email).to eql old_email
+    end
+    it 'should not allow a user to change username' do
+      request.headers['Authorization'] = "Bearer #{user.token}"
+      old_username = user.username
+      put :update, id: user.id, user: {username: "new username!"}
+      expect(response).to be_unprocessable
+      user.reload
+      expect(user.username).to eql old_username
+    end
   end
 
   describe 'create' do

@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 2 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :username, presence: true, uniqueness: true
+  validate :username_not_changed
+  validate :email_not_changed
 
   # Generates a timed JWT
   # expiration unit is hours
@@ -44,5 +46,17 @@ class User < ActiveRecord::Base
 
   def self.hmac_key
     Rails.application.config.jwt_key
+  end
+
+  def username_not_changed
+    if username_changed? && persisted?
+      errors.add(:username, "Username can not be changed")
+    end
+  end
+
+  def email_not_changed
+    if email_changed? && persisted?
+      errors.add(:email, "Email can not be changed")
+    end
   end
 end
