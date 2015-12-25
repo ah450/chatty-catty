@@ -33,7 +33,7 @@ RSpec.describe Api::UsersController, type: :controller do
       get :show, format: :json,  id: user.id
       expect(json_response[:id]).to eq user.id
       expect(json_response).to include(
-        :id, :email, :created_at, :updated_at
+        :id, :email, :username, :created_at, :updated_at
         )
       expect(json_response).to_not include(:password_digest)
     end
