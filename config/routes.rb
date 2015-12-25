@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   namespace :api do
-    resource :users, except: [:destroy]
+    resources :users, except: [:destroy]
   end
 end
