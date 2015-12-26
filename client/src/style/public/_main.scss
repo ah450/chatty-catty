@@ -1,8 +1,17 @@
 
-[data-ui-view=pageContent] {
+[data-ui-view='pageContent'] {
   margin: 0 auto;
   max-width: 700px;
   width: 94%;
+}
+
+#internalError {
+  padding-top: 30vh;
+  color: $red;
+  a {
+    color: $blue;
+    text-decoration: underline;
+  }
 }
 
 @import 'login';

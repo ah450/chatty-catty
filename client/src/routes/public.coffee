@@ -29,11 +29,19 @@ angular.module 'chattyCatty'
         'pageContent':
           templateUrl: 'public/about.html'
 
+    internalErrorState =
+      name: 'public.internal_error'
+      url: '/oops'
+      views:
+        'pageContent':
+          templateUrl: 'public/internal_error.html'
+
     $stateProvider
       .state publicState
       .state loginState
       .state signupState
       .state aboutState
+      .state internalErrorState
 
 
 
