@@ -3,6 +3,7 @@ class Api::TokensController < ApplicationController
   
   def create
     user = User.find_by_email(token_params[:email])
+    raise AuthenticationError if user.nil?
     raise AuthenticationError unless user.authenticate(token_params[:password])
     render json: {token: user.token(params[:expiration])}
   end
