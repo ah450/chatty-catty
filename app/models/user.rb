@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validate :username_not_changed
   validate :email_not_changed
+  has_many :rooms
 
   # Generates a timed JWT
   # expiration unit is hours
