@@ -34,13 +34,13 @@ input.material-text {
   }
 
   &:focus {
-    border-bottom-color: $md-clr-light-blue-500;
+    border-bottom-color: $blue;
   }
 
   // on focus move up
   &:focus ~ label {
     top: -1em;
-    color: $md-clr-light-blue-500;
+    color: $blue;
     font-size: 1.4em;
   }
 
