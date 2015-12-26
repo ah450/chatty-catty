@@ -11,7 +11,10 @@ angular.module 'chattyCatty'
         deferred = $q.defer()
         configurations.then (config) ->
           expiration ||= config.default_token_exp
-          $auth.login _.extend info, {expiration: expiration}
+          data =
+            token: info
+            expiration: expiration
+          $auth.login data
             .then (response) ->
               deferred.resolve response
             .catch (response) ->
@@ -19,6 +22,11 @@ angular.module 'chattyCatty'
         .catch (response) ->
           deferred.reject response
         return deferred.promise
+
+      signup: (user) ->
+        data =
+          user: user
+        $auth.signup data
 
       logout: ->
         if @signedIn

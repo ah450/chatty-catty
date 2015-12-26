@@ -6,6 +6,19 @@ angular.module 'chattyCatty'
       templateUrl: 'public/root.html'
       url: ''
       abstract: true
+      data:
+        authRule: (userAuth) ->
+          if userAuth.signedIn
+            {
+              to: 'private.rooms'
+              params: {}
+              allowed: false
+            }
+          else
+            {
+              allowed: true
+            }
+
 
     loginState =
       name: 'public.login'

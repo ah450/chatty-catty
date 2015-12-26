@@ -1,7 +1,10 @@
 
-#loginForm {
+.user-form {
   
   padding-top: 30vh;
+  @include media("height<=730px") {
+    padding-top: 15vh;
+  }
 
   header {
     margin-bottom: 2em;
@@ -9,6 +12,11 @@
   }
   .form-line {
     margin-bottom: 4em;
+  }
+  fieldset:last-of-type {
+    .form-line:last-child {
+      margin-bottom: 1em;
+    }
   }
   .form-field-error {
     position: absolute;
@@ -44,5 +52,11 @@
       border: 1px solid $md-clr-grey-300;
     }
   }
+  .error {
+    padding-bottom: 1em;
+    color: $red;
+  }
+
+
 }
 

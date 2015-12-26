@@ -8,8 +8,14 @@ input.material-text {
   font-size: 1.5em;
   border-bottom: 1px solid $md-clr-grey-500;
   transition: border-bottom-color .3s ease-in;
+  cursor: pointer;
+
+  @include media("height<=730px") {
+    font-size: 1.3em;
+  }
 
   & ~ label {
+    pointer-events: none;
     user-select: none;
     color: $md-clr-grey-500;
     display: block;
@@ -24,6 +30,10 @@ input.material-text {
       color .3s cubic-bezier(.73,.39,.38,.79),
       font-size .1s cubic-bezier(.73,.39,.38,.79);
 
+    @include media("height<=730px") {
+      font-size: 1em;
+    }
+
   }
 
   // If user filled it in
@@ -31,6 +41,9 @@ input.material-text {
     top: -1em;
     font-size: 1.4em;
     transition: none;
+    @include media("height<=730px"){
+      font-size: 1.1em;
+    }
   }
 
   &:focus {
@@ -42,6 +55,9 @@ input.material-text {
     top: -1em;
     color: $blue;
     font-size: 1.4em;
+    @include media("height<=730px"){
+      font-size: 1.1em;
+    }
   }
 
   // Error messages
@@ -57,4 +73,5 @@ input.material-text {
   &.ng-untouched ~ .form-field-error {
     visibility: hidden;
   }
+
 }
