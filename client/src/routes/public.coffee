@@ -24,6 +24,7 @@ angular.module 'chattyCatty'
           controller: 'SignupController'
     aboutState =
       name: 'public.about'
+      url: '/about'
       views:
         'pageContent':
           templateUrl: 'public/about.html'
