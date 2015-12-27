@@ -12,9 +12,10 @@ angular.module 'chattyCatty'
     subscription = null
 
     receiveHandler = (message) ->
-      args = [$scope.messages.length, 0].concat message
-      Array::splice.apply $scope.messages, args
-      $scope.$apply()
+      if message.author.id isnt UserAuth.getUser().id
+        args = [$scope.messages.length, 0].concat message
+        Array::splice.apply $scope.messages, args
+        $scope.$apply()
 
 
     success = (room) ->
@@ -23,9 +24,12 @@ angular.module 'chattyCatty'
       subscription = FayeClient.subscribe "/#{room.id}", receiveHandler
 
     $scope.sendMessage = ->
-      FayeClient.publish "/#{$scope.room.id}",
+      message =
         author: UserAuth.getUser()
         text: $scope.out.text
+      args = [$scope.messages.length, 0].concat message
+      Array::splice.apply $scope.messages, args
+      FayeClient.publish "/#{$scope.room.id}", message
       $scope.out.text = ""
 
     failure = (response) ->
