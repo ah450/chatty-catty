@@ -1,5 +1,5 @@
 angular.module 'chattyCatty'
-  .factory 'UserAuth', ($auth, $q, configurations) ->
+  .factory 'UserAuth', ($auth, $q, configurations, localStorageService) ->
     class UserService
       constructor: ->
         
@@ -9,13 +9,15 @@ angular.module 'chattyCatty'
 
       login: (info, expiration) ->
         deferred = $q.defer()
-        configurations.then (config) ->
+        configurations.then (config) =>
           expiration ||= config.default_token_exp
           data =
             token: info
             expiration: expiration
           $auth.login data
-            .then (response) ->
+            .then (response) =>
+              @currentUser = response.data.user
+              localStorageService.set 'currentUser', @currentUser
               deferred.resolve response
             .catch (response) ->
               deferred.reject response
@@ -27,10 +29,23 @@ angular.module 'chattyCatty'
         data =
           user: user
         $auth.signup data
+          .then (response) =>
+            @currentUser = response.data.user
+            localStorageService.set 'currentUser', @currentUser
+            return response
+
 
       logout: ->
+        @currentUser = undefined
+        localStorageService.remove 'currentUser'
         if @signedIn
           $auth.logout()
+
+      getUser: ->
+        if not angulat.isUndefined @currentUser
+          return @currentUser
+        else
+          return localStorageService.get 'currentUser'
         
     return new UserService
     
