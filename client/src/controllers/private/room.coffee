@@ -30,7 +30,7 @@ angular.module 'chattyCatty'
 
     failure = (response) ->
       console.error response
-      $state.go 'public.internal_error'
+      $state.go 'private.internal_error'
 
 
     RoomsResource.get $stateParams, success, failure

@@ -56,7 +56,7 @@ angular.module 'chattyCatty'
             .join ' '
           $scope.processingRoom = false
         else
-          $state.go 'public.internal_error'
+          $state.go 'private.internal_error'
       room.$save success, failure
 
 

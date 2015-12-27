@@ -38,7 +38,23 @@ angular.module 'chattyCatty'
           templateUrl: 'private/room.html'
           controller: 'RoomController'
 
+    aboutState =
+      name: 'private.about'
+      url: '/info'
+      views:
+        'privateContent':
+          templateUrl: 'public/about.html'
+
+    internalErrorState =
+      name: 'private.internal_error'
+      url: '/ooops'
+      views:
+        'privateContent':
+          templateUrl: 'public/internal_error.html'
+
     $stateProvider
       .state privateState
       .state roomsState
       .state roomState
+      .state internalErrorState
+      .state aboutState
