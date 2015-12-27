@@ -1,10 +1,13 @@
 angular.module 'chattyCatty'
   .controller 'LoginController', ($scope, $state, UserAuth, redirect) ->
-    $scope.userData = {}
+    $scope.userData =
+      remember: false
     $scope.processing = false
     $scope.submit = ->
       return if $scope.processing
       $scope.processing = true
+      if $scope.userData.remember
+        $scope.userData.expiration = 48
       UserAuth.login $scope.userData, $scope.expiration
         .then ->
           if redirect.empty

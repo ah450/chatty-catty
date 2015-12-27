@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_resource, only: [:destroy, :show, :update]
   before_action :authenticate, :authorize, only: [:destroy, :update]
-  after_filter :no_cache, only: [:destroy, :update]
+  after_filter :no_cache, only: [:destroy, :update, :create]
   rescue_from AuthenticationError, with: :authentication_error
   rescue_from JWT::ExpiredSignature, with: :expired_signature
   rescue_from JWT::VerificationError, with: :verification_error
