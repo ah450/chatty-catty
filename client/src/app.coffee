@@ -1,7 +1,8 @@
 
 angular.module 'chattyCatty', ['ngResource', 'ui.router', 'ui.router.title',
   'chattyCattyTemplates', 'satellizer', 'LocalStorageModule', 'ngAnimate',
-  'angulartics', 'angulartics.google.analytics', 'infinite-scroll'
+  'angulartics', 'angulartics.google.analytics', 'infinite-scroll',
+  'ngDialog'
   ]
   
 
@@ -24,3 +25,7 @@ angular.module 'chattyCatty'
 angular.module 'chattyCatty'
   .constant 'apiHost', '/api'
   .constant 'baseHost', '/'
+
+# Infinite scroll throttling
+angular.module 'infinite-scroll'
+  .value 'THROTTLE_MILLISECONDS', 250
