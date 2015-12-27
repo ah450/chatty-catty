@@ -30,7 +30,7 @@ angular.module 'chattyCatty'
           user: user
         $auth.signup data
           .then (response) =>
-            @currentUser = response.data.user
+            @currentUser = response.data
             localStorageService.set 'currentUser', @currentUser
             return response
 
