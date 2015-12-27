@@ -10,9 +10,6 @@
     margin-bottom: 2em;
     text-align: center;
   }
-  .form-line {
-    margin-bottom: 4em;
-  }
   fieldset:last-of-type {
     .form-line:last-child {
       margin-bottom: 1em;
@@ -22,41 +19,9 @@
     position: absolute;
   }
 
-
-  button[type="submit"] {
-    padding: 0.5em;
-    width: 10em;
-    height: 2em;
-    vertical-align: middle;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 1em;
-    border: 2px solid $green;
-    background-color: $green;
-    position: relative;
-    &.loading {
-      width: 2em;
-      height: 2em;
-      border-radius: 50%;
-      &, &:hover {
-        background-color: $blue;
-        border: none;
-      }
-    }
-    &:hover {
-      background-color: transparent;
-    }
-    &[disabled] {
-      cursor: not-allowed;
-      background: $md-clr-grey-300;
-      border: 1px solid $md-clr-grey-300;
-    }
+  .form-line {
+    margin-bottom: 4em;
   }
-  .error {
-    padding-bottom: 1em;
-    color: $red;
-  }
-
 
 }
 

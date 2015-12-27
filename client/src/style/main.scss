@@ -46,9 +46,14 @@ footer {
   border-top: 1px solid $md-clr-grey-200;
 }
 
+// .wf-loading {
+//   visibility: hidden;
+// }
+
 
 
 @import 'utility/main';
 @import 'public/main';
 @import 'generic/main';
 @import 'animations/main';
+@import 'private/main';

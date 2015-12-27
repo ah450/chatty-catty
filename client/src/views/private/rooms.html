@@ -1,1 +1,27 @@
-<p>Please stand by</p>
+
+<section id="roomsWrapper">
+  <header>
+    <h2>Available Rooms</h2>
+  </header>
+  <div class="spinner" data-ng-if="loading">
+    <i class="material-icons spinner">refresh</i>
+  </div>
+  <ul class="rooms-list"
+  data-infinite-scroll='loadMore()'
+  data-infinite-scroll-disabled='scrollDisabled'
+  data-infinite-scroll-listen-for-event="rooms:reflow"
+  >
+    <li class="room btn-green"
+    data-ng-click="showAddDialog()"
+    >
+      <i class="material-icons">add</i>
+    </li>
+    <li class="room"
+    data-ng-repeat="room in rooms track by $index"
+    data-ng-class="roomClasses[$index %roomClasses.length]"
+    >
+      <div class="room-btn">{{room.name}}</div>
+    </li>
+    
+  </ul>
+</section>

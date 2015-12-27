@@ -1,0 +1,41 @@
+
+#roomsWrapper {
+  header {
+    text-align: center;
+    padding-bottom: 1em;
+  }
+  .spinner {
+    text-align: center;
+    font-size: 3em;
+  }
+  padding-top: 30vh;
+  @include media("height<=730px") {
+    padding-top: 15vh;
+  }
+
+  .rooms-list {
+    // Collapse whitespace between items
+    font-size: 0px;
+    padding: 0.2rem;
+    &:after {
+      display: inline-block;
+      content: '';
+      width: 100%;
+    }
+    .room {
+      margin: 0.2rem;
+      display: inline-block;
+      font-size: 1rem;
+    }
+  }
+}
+
+#roomForm {
+  // Set to border-box by ngDialog stylesheet.
+  box-sizing: content-box;
+  padding-top: 2em;
+  header {
+    margin-bottom: 3em;
+    text-align: center;
+  }
+}

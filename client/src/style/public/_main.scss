@@ -7,6 +7,9 @@
 
 #internalError {
   padding-top: 30vh;
+  @include media("height<=600px") {
+    padding-top: 15vh;
+  }
   color: $red;
   a {
     color: $blue;
