@@ -42,7 +42,7 @@ angular.module 'chattyCatty'
           $auth.logout()
 
       getUser: ->
-        if not angulat.isUndefined @currentUser
+        if not angular.isUndefined @currentUser
           return @currentUser
         else
           return localStorageService.get 'currentUser'

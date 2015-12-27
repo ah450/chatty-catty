@@ -2,7 +2,7 @@
 angular.module 'chattyCatty', ['ngResource', 'ui.router', 'ui.router.title',
   'chattyCattyTemplates', 'satellizer', 'LocalStorageModule', 'ngAnimate',
   'angulartics', 'angulartics.google.analytics', 'infinite-scroll',
-  'ngDialog'
+  'ngDialog', 'ngEmbed', 'luegg.directives'
   ]
   
 

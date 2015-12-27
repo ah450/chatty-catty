@@ -39,5 +39,9 @@ module ChattyCatty
         },
         default_token_exp: 24 * 60 * 60
     }
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
+        map default: :allow
+    end
   end
 end

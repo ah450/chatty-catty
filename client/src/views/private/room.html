@@ -1,0 +1,29 @@
+<div class="spinner" data-ng-if="loading">
+  <i class="material-icons spinner">refresh</i>
+</div>
+<section id="roomWrapper" data-ng-if="!loading">
+  <header class="room-header">
+    <h2>{{room.name}}</h2>
+  </header>
+
+  <section data-scroll-glue class="messages">
+    <div class="message" data-ng-repeat="message in messages track by $index">
+      <p class="author">{{message.author.username}}:</p>
+      <p class="text" data-ng-bind-html="message.text | embed:{link:true, linkTarget: '_blank'}"></p>
+    </div>
+  </section>
+  <form class="message-form"
+  id="messageForm"
+  name="messageForm"
+  data-ng-submit="sendMessage()"
+  novalidate
+  >
+    <input type="text" data-ng-model="out.text"
+    required data-min-length="2"
+    ></input>
+    <button type="submit" class="btn-green"
+    data-ng-disabled="messageForm.$invalid"
+    ><i class="material-icons">send</i>
+    </button>
+  </form>
+</section>

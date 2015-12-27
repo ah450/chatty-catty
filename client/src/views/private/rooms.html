@@ -20,7 +20,7 @@
     data-ng-repeat="room in rooms track by $index"
     data-ng-class="roomClasses[$index %roomClasses.length]"
     >
-      <div class="room-btn">{{room.name}}</div>
+      <div class="room-btn"><a data-ui-sref="private.room({id: room.id})">{{room.name}}</a></div>
     </li>
     
   </ul>

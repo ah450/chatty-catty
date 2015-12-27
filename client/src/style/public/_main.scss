@@ -3,13 +3,14 @@
   margin: 0 auto;
   max-width: 700px;
   width: 94%;
-}
-
-#internalError {
   padding-top: 30vh;
   @include media("height<=600px") {
     padding-top: 15vh;
   }
+}
+
+#internalError {
+ 
   color: $red;
   a {
     color: $blue;

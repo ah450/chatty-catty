@@ -18,6 +18,7 @@ var templates = require('./gulp-tasks/templates');
 var scripts = require('./gulp-tasks/scripts');
 var rimraf = require('rimraf');
 var watch = require('gulp-watch');
+var proxyMiddleware = require('http-proxy-middleware');
 
 gulp.task('bower-install', function() {
   // Runs bower install
@@ -96,6 +97,10 @@ gulp.task('production', ['production-helper'], function () {
 
 
 gulp.task('server', ['build'], function() {
+  var proxyOpts = {
+    target: 'http://localhost:3000',
+    ws: true
+  }
   connect.server({
     livereload: true,
     root: 'build',
@@ -104,7 +109,8 @@ gulp.task('server', ['build'], function() {
       return [
         modRewrite([
           '^/api/(.*)$ http://localhost:3000/api/$1 [P]'
-        ])
+        ]),
+        proxyMiddleware('/faye', proxyOpts)
       ];
     }
   });

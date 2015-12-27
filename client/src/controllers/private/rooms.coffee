@@ -1,6 +1,6 @@
 angular.module 'chattyCatty'
-  .controller 'RoomsController', ($scope, $resource, $state, endpoints,
-    Pagination, ngDialog) ->
+  .controller 'RoomsController', ($scope, $state,
+    Pagination, ngDialog, RoomsResource) ->
     $scope.rooms = []
     ids = []
     $scope.roomClasses = ['btn-red', 'btn-blue', 'btn-green']
@@ -11,18 +11,7 @@ angular.module 'chattyCatty'
     $scope.processingRoom = false
     $scope.roomCreateError = ''
 
-    roomsResourceDefaultParams =
-      id: '@id'
-    roomsResourceActions =
-      query:
-        method: 'GET'
-        isArray: false
-        cache: true
-
-    roomsResource = $resource endpoints.rooms.resourceUrl,
-      roomsResourceDefaultParams, roomsResourceActions
-
-    roomsPagination = new Pagination roomsResource, 'rooms', {}, _.identity,
+    roomsPagination = new Pagination RoomsResource, 'rooms', {}, _.identity,
       defaultPageSize
 
     # Adds rooms to $scope.rooms starting at begin (index)
@@ -55,7 +44,7 @@ angular.module 'chattyCatty'
     $scope.submit = ->
       return if $scope.processingRoom
       $scope.processingRoom = true
-      room = new roomsResource $scope.newRoomData
+      room = new RoomsResource $scope.newRoomData
       success = (room) ->
         $scope.newRoomDialog.close()
         $scope.processingRoom = false

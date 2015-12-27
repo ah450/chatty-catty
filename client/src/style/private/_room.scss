@@ -1,0 +1,46 @@
+.room-header {
+  text-align: center;
+}
+
+#roomWrapper {
+  a {
+    color: $blue;
+    text-decoration: underline;
+  }
+  .messages {
+    position: relative;
+    height: 40vh;
+    overflow: auto;
+    .message {
+      padding: 0.5em;
+      .author, .text {
+        display: inline-block;
+      }
+      .author {
+        color: $blue;
+      }
+      .text {
+        padding-left: 1em;
+      }
+    }
+  }
+
+
+  .message-form {
+    padding-top: 0.5em;
+    input[type="text"] {
+      width: 80%;
+      padding: 0.5em;
+      border: 1px solid $red;
+      border-radius: 1em;
+    }
+    button[type="submit"] {
+      &[disabled] {
+        cursor: not-allowed;
+        background: $md-clr-grey-300;
+        border: 1px solid $md-clr-grey-300;
+      }
+    }
+  }
+}
+

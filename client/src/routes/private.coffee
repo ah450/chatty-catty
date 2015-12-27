@@ -30,6 +30,15 @@ angular.module 'chattyCatty'
           templateUrl: 'private/rooms.html'
           controller: 'RoomsController'
 
+    roomState =
+      name: 'private.room'
+      url: '/rooms/:id'
+      views:
+        'privateContent':
+          templateUrl: 'private/room.html'
+          controller: 'RoomController'
+
     $stateProvider
       .state privateState
       .state roomsState
+      .state roomState

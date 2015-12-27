@@ -4,15 +4,7 @@
     text-align: center;
     padding-bottom: 1em;
   }
-  .spinner {
-    text-align: center;
-    font-size: 3em;
-  }
-  padding-top: 30vh;
-  @include media("height<=730px") {
-    padding-top: 15vh;
-  }
-
+  
   .rooms-list {
     // Collapse whitespace between items
     font-size: 0px;
