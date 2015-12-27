@@ -28,9 +28,9 @@ angular.module 'chattyCatty'
         text: $scope.out.text
       $scope.out.text = ""
 
-
-
     failure = (response) ->
       console.error response
       $state.go 'public.internal_error'
+
+
     RoomsResource.get $stateParams, success, failure
