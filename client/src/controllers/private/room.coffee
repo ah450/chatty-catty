@@ -11,15 +11,6 @@ angular.module 'chattyCatty'
     $scope.messages = []
     subscription = null
 
-    extension = {
-      outgoing: (message, callback) ->
-        (message['data'] ?= {})['ext'] = {
-          token: $auth.getToken()
-        }
-        callback message
-    }
-    FayeClient.addExtension extension
-
     receiveHandler = (message) ->
       if message.author.id isnt UserAuth.getUser().id
         args = [$scope.messages.length, 0].concat message
@@ -47,6 +38,9 @@ angular.module 'chattyCatty'
     failure = (response) ->
       console.error response
       $state.go 'private.internal_error'
+
+    $scope.$on '$destroy', ->
+      FayeClient.unsubscribe "/rooms/#{$scope.room.id}"
 
 
     RoomsResource.get $stateParams, success, failure
