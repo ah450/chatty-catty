@@ -1,5 +1,5 @@
 angular.module 'chattyCatty'
-  .controller 'RoomController', ($scope, $state, $stateParams,
+  .controller 'RoomController', ($scope, $state, $stateParams, $auth,
     RoomsResource, FayeClient, UserAuth) ->
     $scope.loading = true
     $scope.out = {
@@ -11,6 +11,15 @@ angular.module 'chattyCatty'
     $scope.messages = []
     subscription = null
 
+    extension = {
+      outgoing: (message, callback) ->
+        (message['data'] ?= {})['ext'] = {
+          token: $auth.getToken()
+        }
+        callback message
+    }
+    FayeClient.addExtension extension
+
     receiveHandler = (message) ->
       if message.author.id isnt UserAuth.getUser().id
         args = [$scope.messages.length, 0].concat message
@@ -21,15 +30,18 @@ angular.module 'chattyCatty'
     success = (room) ->
       $scope.room = room
       $scope.loading = false
-      subscription = FayeClient.subscribe "/#{room.id}", receiveHandler
+      subscription = FayeClient.subscribe "/rooms/#{room.id}", receiveHandler
 
     $scope.sendMessage = ->
       message =
-        author: UserAuth.getUser()
         text: $scope.out.text
-      args = [$scope.messages.length, 0].concat message
+        author: UserAuth.getUser()
+      args = [$scope.messages.length, 0].concat
+        text: $scope.out.text
+        author: UserAuth.getUser()
+      
       Array::splice.apply $scope.messages, args
-      FayeClient.publish "/#{$scope.room.id}", message
+      FayeClient.publish "/rooms/#{$scope.room.id}", message
       $scope.out.text = ""
 
     failure = (response) ->
